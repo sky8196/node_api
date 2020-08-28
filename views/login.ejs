@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<input type="text" id="ipt" value="">
+<button id="btn">登入</button>
+<% const a = 4;if (a>2) { %>
+    <p>123</p>
+<% } %>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    $('#btn').click(()=>{
+        $.post('/login',{name:$('#ipt').val()},function (data) {
+            console.log(data)
+            if (data.code === 200) {
+                window.location.href='/';
+            }
+        })
+    })
+</script>
+</html>
