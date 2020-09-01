@@ -16,7 +16,7 @@ module.exports = (sql = '',params = [] ) => ( new Promise((resolve,reject)=>{
     mysqlQuery('test',sql,params,(err,result)=> {
         if(err){
             console.log("数据库操作失败",err);
-            return;
+            resolve(err.code)
         } else {
             let res = JSON.stringify(result)
             res = JSON.parse(res)

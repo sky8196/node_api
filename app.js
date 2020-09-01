@@ -41,7 +41,7 @@ app.all('/api*',function (req,res,next) {
     }
 
 })
-app.use('/api',require('./routes/api/v1'))
+app.use('/api/v1',require('./routes/api/v1'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
