@@ -10,6 +10,18 @@ function crypt(salt) {
     return res;
 }
 
+function getBaxianFile() {
+    const fileUrl = path.join(__dirname,'../','static','baxianguohai');
+    const relativePath = '/static/baxianguohai';
+    let files = fs.readdirSync(fileUrl);
+    const data = []
+    files.forEach( file=>{
+        const fileName = file.split(".")[0];
+        data.push({name:fileName,src:`http://api.sky8196.cn${relativePath}/${file}`})
+    })
+    return data
+}
+
 function putFile() {
     const fileUrl = path.join(__dirname,'../','static','images');
     const relativePath = '/static/images';
@@ -22,9 +34,8 @@ function putFile() {
         const params = [fileName,relativePath,fileType,createDate];
         await mysqlQuery(sql, params)
     })
-
 }
 // putFile() //添加图片所需 还需完善
 
 
-module.exports = { crypt }
+module.exports = { crypt,getBaxianFile }

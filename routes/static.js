@@ -17,6 +17,17 @@ router.get('/images/*', function(req, res, next) {
             }
         });
 });
+router.get('/baxianguohai/*', function(req, res, next) {
+    console.log('req.url----',req.url)
+    const url = path.join(__dirname,'../static',req.url)
+    fs.access(url, fs.constants.F_OK, (err) => {
+        if (err) {
+            res.render('public')
+        } else {
+            res.sendfile(url)
+        }
+    });
+});
 router.get('/', function(req, res, next) {
     console.log('跟路径')
 });

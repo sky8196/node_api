@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const mysqlQuery = require('../../utils/mysql')
-const {crypt} = require('../../utils/tool')
+const {crypt,getBaxianFile} = require('../../utils/tool')
 /* GET home page. */
 router.get('/image/list', async function(req, res, next) {
     let { type = '',page = 1,number = 10 } =  req.query;
@@ -26,5 +26,10 @@ router.get('/image/list', async function(req, res, next) {
     const result = await mysqlQuery(sql,params)
     res.send({ code: 200, data: result});
 });
+router.get('/image/baxianguohai/list', async function(req, res, next) {
+    const data = await getBaxianFile()
+    res.send({ code: 200, data: data});
+});
+
 
 module.exports = router;
